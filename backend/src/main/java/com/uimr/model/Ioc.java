@@ -23,7 +23,7 @@ public class Ioc {
     @Column(nullable = false, length = 20)
     private IocType type;
 
-    @Column(nullable = false, length = 500)
+    @Column(name = "ioc_value", nullable = false, length = 500)
     private String value;
 
     @Enumerated(EnumType.STRING)

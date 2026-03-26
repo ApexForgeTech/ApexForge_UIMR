@@ -7,7 +7,6 @@ import com.uimr.model.enums.NotificationChannel;
 import com.uimr.repository.NotificationRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -24,12 +23,17 @@ public class NotificationService {
     private final NotificationRepository notificationRepo;
     private final SimpMessagingTemplate messagingTemplate;
     private final RestTemplate restTemplate;
+    private final SystemSettingsService settingsService;
 
-    @Value("${telegram.bot-token:}")
-    private String telegramBotToken;
+    private String getTelegramBotToken() {
+        return settingsService.getSettingValue("telegram.bot-token", "");
+    }
 
-    @Value("${telegram.default-chat-id:}")
-    private String defaultTelegramChatId;
+    private String getDefaultTelegramChatId() {
+        return settingsService.getSettingValue("telegram.default-chat-id", "");
+    }
+
+
 
     public void notifyIncidentCreated(Incident incident, User targetUser) {
         String title = "New Incident: " + incident.getTitle();
@@ -80,18 +84,18 @@ public class NotificationService {
 
         // Send Telegram if configured
         if (channel == NotificationChannel.TELEGRAM || user.getTelegramChatId() != null) {
-            sendTelegram(user.getTelegramChatId() != null ? user.getTelegramChatId() : defaultTelegramChatId,
+            sendTelegram(user.getTelegramChatId() != null ? user.getTelegramChatId() : getDefaultTelegramChatId(),
                         title + "\n" + message);
         }
     }
 
     private void sendTelegram(String chatId, String text) {
-        if (telegramBotToken.isEmpty() || chatId == null || chatId.isEmpty()) {
+        if (getTelegramBotToken().isEmpty() || chatId == null || chatId.isEmpty()) {
             log.debug("Telegram not configured, skipping notification");
             return;
         }
         try {
-            String url = String.format("https://api.telegram.org/bot%s/sendMessage", telegramBotToken);
+            String url = String.format("https://api.telegram.org/bot%s/sendMessage", getTelegramBotToken());
             restTemplate.postForObject(url, Map.of("chat_id", chatId, "text", text), String.class);
         } catch (Exception e) {
             log.error("Failed to send Telegram notification: {}", e.getMessage());

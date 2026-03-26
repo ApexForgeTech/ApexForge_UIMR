@@ -32,6 +32,11 @@ public class Report {
 
     private String fileUrl; // URL or path to the generated file
 
+    @Lob
+    @Column(columnDefinition = "CLOB")
+    private String reportContent; // Actual generated report content
+
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "generated_by_id")
     private User generatedBy;

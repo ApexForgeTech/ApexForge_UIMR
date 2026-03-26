@@ -10,8 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -24,13 +23,16 @@ public class PlaybookController {
     @GetMapping
     public ResponseEntity<List<Map<String, Object>>> getPlaybooks() {
         List<Map<String, Object>> result = playbookService.getAllPlaybooks().stream()
-                .map(p -> Map.<String, Object>of(
-                        "id", p.getId(),
-                        "name", p.getName(),
-                        "description", p.getDescription() != null ? p.getDescription() : "",
-                        "soarEndpoint", p.getSoarEndpoint() != null ? p.getSoarEndpoint() : "",
-                        "createdAt", p.getCreatedAt().toString()
-                ))
+                .map(p -> {
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("id", p.getId());
+                    map.put("name", p.getName());
+                    map.put("description", p.getDescription() != null ? p.getDescription() : "");
+                    map.put("stepsJson", p.getStepsJson() != null ? p.getStepsJson() : "[]");
+                    map.put("soarEndpoint", p.getSoarEndpoint() != null ? p.getSoarEndpoint() : "");
+                    map.put("createdAt", p.getCreatedAt().toString());
+                    return map;
+                })
                 .collect(Collectors.toList());
         return ResponseEntity.ok(result);
     }

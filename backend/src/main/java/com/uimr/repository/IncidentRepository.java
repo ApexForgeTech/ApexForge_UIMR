@@ -20,10 +20,10 @@ public interface IncidentRepository extends JpaRepository<Incident, Long> {
     Page<Incident> findByTeamId(Long teamId, Pageable pageable);
 
     @Query("SELECT i FROM Incident i WHERE " +
-           "(:status IS NULL OR i.status = :status) AND " +
-           "(:severity IS NULL OR i.severity = :severity) AND " +
+           "(CAST(:status AS string) IS NULL OR i.status = :status) AND " +
+           "(CAST(:severity AS string) IS NULL OR i.severity = :severity) AND " +
            "(:assigneeId IS NULL OR i.assignee.id = :assigneeId) AND " +
-           "(:search IS NULL OR LOWER(i.title) LIKE LOWER(CONCAT('%', :search, '%')))")
+           "(:search IS NULL OR :search = '' OR LOWER(i.title) LIKE LOWER(CONCAT('%', :search, '%')))")
     Page<Incident> findFiltered(
         @Param("status") IncidentStatus status,
         @Param("severity") Severity severity,
@@ -31,6 +31,7 @@ public interface IncidentRepository extends JpaRepository<Incident, Long> {
         @Param("search") String search,
         Pageable pageable
     );
+
 
     // Dashboard queries
     long countByStatus(IncidentStatus status);

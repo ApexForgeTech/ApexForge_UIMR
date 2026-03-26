@@ -39,6 +39,10 @@ public class SecurityConfig {
                 .requestMatchers("/h2-console/**").permitAll()
                 .requestMatchers("/ws/**").permitAll()
                 .requestMatchers("/api/ingest/**").permitAll()
+                .requestMatchers(org.springframework.http.HttpMethod.GET, "/api/users").authenticated() // Everyone can see users
+                .requestMatchers("/api/users/**").hasRole("ADMIN")
+                .requestMatchers(org.springframework.http.HttpMethod.POST, "/api/users").hasRole("ADMIN")
+                .requestMatchers("/api/settings/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
             )
             .headers(headers -> headers.frameOptions(frame -> frame.disable())) // H2 console

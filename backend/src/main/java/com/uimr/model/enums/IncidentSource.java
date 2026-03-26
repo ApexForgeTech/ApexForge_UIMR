@@ -7,5 +7,8 @@ public enum IncidentSource {
     XDR,
     FIREWALL,
     API,
-    SYSLOG
+    SYSLOG,
+    THREAT_INTEL,
+    EMAIL_GATEWAY,
+    IDS_IPS
 }

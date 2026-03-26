@@ -20,7 +20,15 @@ public class SystemSettingsController {
     }
 
     @PutMapping
+    @org.springframework.security.access.prepost.PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<SystemSettings> updateSetting(@RequestParam String key, @RequestParam String value) {
         return ResponseEntity.ok(settingsService.updateSetting(key, value));
+    }
+
+    @PostMapping("/bulk")
+    @org.springframework.security.access.prepost.PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Void> updateBulkSettings(@RequestBody java.util.Map<String, String> payload) {
+        payload.forEach(settingsService::updateSetting);
+        return ResponseEntity.ok().build();
     }
 }

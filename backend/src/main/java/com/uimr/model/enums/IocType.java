@@ -8,5 +8,6 @@ public enum IocType {
     HASH_SHA1,
     HASH_SHA256,
     EMAIL,
-    FILE
+    FILE,
+    FILENAME
 }

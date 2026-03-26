@@ -10,7 +10,6 @@ import com.uimr.repository.IocRepository;
 import com.uimr.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -26,18 +25,25 @@ public class ThreatIntelService {
     private final UserRepository userRepo;
     private final TimelineService timelineService;
     private final RestTemplate restTemplate;
+    private final SystemSettingsService settingsService;
 
-    @Value("${ti.virustotal.api-key:}")
-    private String vtApiKey;
+    private String getVtApiKey() {
+        return settingsService.getSettingValue("ti.virustotal.api-key", "");
+    }
+    
+    private String getVtBaseUrl() {
+        return settingsService.getSettingValue("ti.virustotal.base-url", "https://www.virustotal.com/api/v3");
+    }
 
-    @Value("${ti.virustotal.base-url:https://www.virustotal.com/api/v3}")
-    private String vtBaseUrl;
+    private String getAbuseIpDbApiKey() {
+        return settingsService.getSettingValue("ti.abuseipdb.api-key", "");
+    }
 
-    @Value("${ti.abuseipdb.api-key:}")
-    private String abuseIpDbApiKey;
+    private String getAbuseIpDbBaseUrl() {
+        return settingsService.getSettingValue("ti.abuseipdb.base-url", "https://api.abuseipdb.com/api/v2");
+    }
 
-    @Value("${ti.abuseipdb.base-url:https://api.abuseipdb.com/api/v2}")
-    private String abuseIpDbBaseUrl;
+
 
     public IocResponse checkIoc(Long iocId, String username) {
         Ioc ioc = iocRepo.findById(iocId)
@@ -48,7 +54,7 @@ public class ThreatIntelService {
 
         try {
             // Check VirusTotal
-            if (!vtApiKey.isEmpty()) {
+            if (!getVtApiKey().isEmpty()) {
                 Map<String, Object> vtResult = checkVirusTotal(ioc);
                 results.put("virustotal", vtResult);
                 if (vtResult.containsKey("malicious") && (int) vtResult.get("malicious") > 0) {
@@ -59,7 +65,7 @@ public class ThreatIntelService {
             }
 
             // Check AbuseIPDB for IPs
-            if (!abuseIpDbApiKey.isEmpty() && ioc.getType() == IocType.IP) {
+            if (!getAbuseIpDbApiKey().isEmpty() && ioc.getType() == IocType.IP) {
                 Map<String, Object> abuseResult = checkAbuseIPDB(ioc.getValue());
                 results.put("abuseipdb", abuseResult);
                 if (abuseResult.containsKey("abuseConfidenceScore")) {
@@ -100,16 +106,16 @@ public class ThreatIntelService {
     private Map<String, Object> checkVirusTotal(Ioc ioc) {
         String endpoint;
         switch (ioc.getType()) {
-            case IP -> endpoint = vtBaseUrl + "/ip_addresses/" + ioc.getValue();
-            case DOMAIN -> endpoint = vtBaseUrl + "/domains/" + ioc.getValue();
-            case URL -> endpoint = vtBaseUrl + "/urls/" + Base64.getUrlEncoder().withoutPadding()
+            case IP -> endpoint = getVtBaseUrl() + "/ip_addresses/" + ioc.getValue();
+            case DOMAIN -> endpoint = getVtBaseUrl() + "/domains/" + ioc.getValue();
+            case URL -> endpoint = getVtBaseUrl() + "/urls/" + Base64.getUrlEncoder().withoutPadding()
                     .encodeToString(ioc.getValue().getBytes());
-            case HASH_MD5, HASH_SHA1, HASH_SHA256 -> endpoint = vtBaseUrl + "/files/" + ioc.getValue();
+            case HASH_MD5, HASH_SHA1, HASH_SHA256 -> endpoint = getVtBaseUrl() + "/files/" + ioc.getValue();
             default -> { return Map.of("status", "unsupported_type"); }
         }
 
         HttpHeaders headers = new HttpHeaders();
-        headers.set("x-apikey", vtApiKey);
+        headers.set("x-apikey", getVtApiKey());
         HttpEntity<Void> entity = new HttpEntity<>(headers);
 
         try {
@@ -130,11 +136,11 @@ public class ThreatIntelService {
 
     private Map<String, Object> checkAbuseIPDB(String ip) {
         HttpHeaders headers = new HttpHeaders();
-        headers.set("Key", abuseIpDbApiKey);
+        headers.set("Key", getAbuseIpDbApiKey());
         headers.set("Accept", "application/json");
         HttpEntity<Void> entity = new HttpEntity<>(headers);
 
-        String url = abuseIpDbBaseUrl + "/check?ipAddress=" + ip + "&maxAgeInDays=90";
+        String url = getAbuseIpDbBaseUrl() + "/check?ipAddress=" + ip + "&maxAgeInDays=90";
 
         try {
             ResponseEntity<Map> response = restTemplate.exchange(url, HttpMethod.GET, entity, Map.class);

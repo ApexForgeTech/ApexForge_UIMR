@@ -7,7 +7,6 @@ import com.uimr.model.enums.*;
 import com.uimr.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
@@ -27,12 +26,15 @@ public class PlaybookService {
     private final UserRepository userRepo;
     private final TimelineService timelineService;
     private final RestTemplate restTemplate;
+    private final SystemSettingsService settingsService;
 
-    @Value("${soar.base-url:http://localhost:9000}")
-    private String soarBaseUrl;
+    private String getSoarBaseUrl() {
+        return settingsService.getSettingValue("soar.base-url", "http://localhost:9000");
+    }
 
-    @Value("${soar.api-key:}")
-    private String soarApiKey;
+    private String getSoarApiKey() {
+        return settingsService.getSettingValue("soar.api-key", "");
+    }
 
     public Playbook createPlaybook(PlaybookRequest request, String username) {
         User user = userRepo.findByUsername(username)
@@ -78,14 +80,19 @@ public class PlaybookService {
         // Execute SOAR if endpoint configured
         if (playbook.getSoarEndpoint() != null && !playbook.getSoarEndpoint().isEmpty()) {
             try {
-                String url = soarBaseUrl + playbook.getSoarEndpoint();
+                String url = getSoarBaseUrl() + playbook.getSoarEndpoint();
                 Map<String, Object> payload = Map.of(
                         "incident_id", incident.getId(),
                         "incident_title", incident.getTitle(),
                         "playbook_id", playbook.getId(),
                         "execution_id", execution.getId()
                 );
-                var result = restTemplate.postForObject(url, payload, String.class);
+                org.springframework.http.HttpHeaders headers = new org.springframework.http.HttpHeaders();
+                if (!getSoarApiKey().isEmpty()) {
+                    headers.set("Authorization", "Bearer " + getSoarApiKey());
+                }
+                org.springframework.http.HttpEntity<Map<String, Object>> entity = new org.springframework.http.HttpEntity<>(payload, headers);
+                var result = restTemplate.postForObject(url, entity, String.class);
                 execution.setStatus(PlaybookStatus.SUCCESS);
                 execution.setResultJson(result);
             } catch (Exception e) {
