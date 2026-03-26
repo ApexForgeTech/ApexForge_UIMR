@@ -72,4 +72,4 @@ soar:
 logging:
   level:
     com.uimr: DEBUG
-    org.springframework.security: INFO
+    org.springframework.security: DEBUG

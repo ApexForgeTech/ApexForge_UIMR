@@ -1,6 +1,5 @@
 package com.uimr.controller;
 
-import com.uimr.model.User;
 import com.uimr.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -30,5 +29,17 @@ public class UserController {
                 ))
                 .collect(Collectors.toList());
         return ResponseEntity.ok(users);
+    }
+
+    @PutMapping("/{id}/role")
+    public ResponseEntity<Void> updateRole(@PathVariable("id") Long id, @RequestParam("role") com.uimr.model.enums.UserRole role) {
+        userService.updateRole(id, role);
+        return ResponseEntity.ok().build();
+    }
+
+    @PatchMapping("/{id}/toggle-active")
+    public ResponseEntity<Void> toggleActive(@PathVariable("id") Long id) {
+        userService.toggleActive(id);
+        return ResponseEntity.ok().build();
     }
 }

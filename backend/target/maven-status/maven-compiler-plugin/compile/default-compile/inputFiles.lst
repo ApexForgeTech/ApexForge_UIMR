@@ -9,7 +9,9 @@
 /home/neo/Proje/backend/src/main/java/com/uimr/service/IncidentService.java
 /home/neo/Proje/backend/src/main/java/com/uimr/dto/request/RegisterRequest.java
 /home/neo/Proje/backend/src/main/java/com/uimr/dto/request/CloseIncidentRequest.java
+/home/neo/Proje/backend/src/main/java/com/uimr/repository/ReportRepository.java
 /home/neo/Proje/backend/src/main/java/com/uimr/controller/DashboardController.java
+/home/neo/Proje/backend/src/main/java/com/uimr/model/Report.java
 /home/neo/Proje/backend/src/main/java/com/uimr/repository/AnalystNoteRepository.java
 /home/neo/Proje/backend/src/main/java/com/uimr/service/TimelineService.java
 /home/neo/Proje/backend/src/main/java/com/uimr/model/enums/UserRole.java
@@ -30,6 +32,7 @@
 /home/neo/Proje/backend/src/main/java/com/uimr/dto/request/IocRequest.java
 /home/neo/Proje/backend/src/main/java/com/uimr/dto/request/UpdateIncidentRequest.java
 /home/neo/Proje/backend/src/main/java/com/uimr/service/ThreatIntelService.java
+/home/neo/Proje/backend/src/main/java/com/uimr/model/enums/ReportStatus.java
 /home/neo/Proje/backend/src/main/java/com/uimr/dto/response/AuthResponse.java
 /home/neo/Proje/backend/src/main/java/com/uimr/dto/request/KbArticleRequest.java
 /home/neo/Proje/backend/src/main/java/com/uimr/dto/request/LoginRequest.java
@@ -43,6 +46,7 @@
 /home/neo/Proje/backend/src/main/java/com/uimr/service/NotificationService.java
 /home/neo/Proje/backend/src/main/java/com/uimr/controller/NoteController.java
 /home/neo/Proje/backend/src/main/java/com/uimr/service/DashboardService.java
+/home/neo/Proje/backend/src/main/java/com/uimr/dto/request/ReportRequest.java
 /home/neo/Proje/backend/src/main/java/com/uimr/UimrApplication.java
 /home/neo/Proje/backend/src/main/java/com/uimr/model/TimelineEvent.java
 /home/neo/Proje/backend/src/main/java/com/uimr/model/Notification.java
@@ -55,12 +59,14 @@
 /home/neo/Proje/backend/src/main/java/com/uimr/service/UserService.java
 /home/neo/Proje/backend/src/main/java/com/uimr/model/enums/Classification.java
 /home/neo/Proje/backend/src/main/java/com/uimr/controller/IncidentController.java
+/home/neo/Proje/backend/src/main/java/com/uimr/controller/ReportController.java
 /home/neo/Proje/backend/src/main/java/com/uimr/model/enums/TiStatus.java
 /home/neo/Proje/backend/src/main/java/com/uimr/repository/TeamRepository.java
 /home/neo/Proje/backend/src/main/java/com/uimr/service/IocService.java
 /home/neo/Proje/backend/src/main/java/com/uimr/controller/KnowledgeBaseController.java
 /home/neo/Proje/backend/src/main/java/com/uimr/dto/response/TimelineEventResponse.java
 /home/neo/Proje/backend/src/main/java/com/uimr/controller/UserController.java
+/home/neo/Proje/backend/src/main/java/com/uimr/service/ReportService.java
 /home/neo/Proje/backend/src/main/java/com/uimr/controller/IngestionController.java
 /home/neo/Proje/backend/src/main/java/com/uimr/model/enums/IncidentSource.java
 /home/neo/Proje/backend/src/main/java/com/uimr/model/User.java

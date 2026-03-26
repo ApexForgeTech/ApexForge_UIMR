@@ -17,7 +17,15 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User getUserById(Long id) {
-        return userRepository.findById(id).orElse(null);
+    public User updateRole(Long id, com.uimr.model.enums.UserRole role) {
+        User user = userRepository.findById(id).orElseThrow();
+        user.setRole(role);
+        return userRepository.save(user);
+    }
+
+    public User toggleActive(Long id) {
+        User user = userRepository.findById(id).orElseThrow();
+        user.setActive(!user.getActive());
+        return userRepository.save(user);
     }
 }
