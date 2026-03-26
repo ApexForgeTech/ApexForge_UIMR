@@ -1,3 +1,6 @@
+Bunu nece hesabat edek![SoExcited~GIF (2)](https://github.com/user-attachments/assets/06685e92-6709-46fd-b9a8-615bacce380c)
+
+
 # Unified Incident Management & Response Platform (UIMR)
 
 Mərkəzləşdirilmiş insidentlərin idarəedilməsi və cavablandırılması platforması — SOC komandaları üçün insidentlərin yaradılması, izlənməsi, IOC analizi, SOAR inteqrasiyası və bildiriş mexanizmləri ilə tam funksional bir platforma.
