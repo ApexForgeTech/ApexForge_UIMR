@@ -1,0 +1,36 @@
+#!/bin/sh
+# Maven Wrapper script
+# Adapted from https://github.com/apache/maven-wrapper
+
+set -e
+
+MAVEN_PROJECTBASEDIR="${MAVEN_BASEDIR:-$(cd "$(dirname "$0")" && pwd)}"
+MAVEN_WRAPPER_JAR="$MAVEN_PROJECTBASEDIR/.mvn/wrapper/maven-wrapper.jar"
+MAVEN_WRAPPER_PROPERTIES="$MAVEN_PROJECTBASEDIR/.mvn/wrapper/maven-wrapper.properties"
+
+# Read distribution URL
+if [ -f "$MAVEN_WRAPPER_PROPERTIES" ]; then
+    distributionUrl=$(grep "distributionUrl" "$MAVEN_WRAPPER_PROPERTIES" | cut -d'=' -f2-)
+fi
+
+MAVEN_HOME="$HOME/.m2/wrapper/dists/$(basename "$distributionUrl" .zip)"
+
+if [ ! -d "$MAVEN_HOME" ]; then
+    echo "Downloading Maven from $distributionUrl"
+    mkdir -p "$MAVEN_HOME"
+    TMPFILE=$(mktemp /tmp/maven-dist.XXXXXX.zip)
+    curl -sL "$distributionUrl" -o "$TMPFILE"
+    unzip -q -o "$TMPFILE" -d "$MAVEN_HOME"
+    rm -f "$TMPFILE"
+fi
+
+# Find maven executable
+MVN_CMD=$(find "$MAVEN_HOME" -name "mvn" -path "*/bin/mvn" -type f | head -1)
+
+if [ -z "$MVN_CMD" ]; then
+    echo "Error: Could not find Maven executable"
+    exit 1
+fi
+
+chmod +x "$MVN_CMD"
+exec "$MVN_CMD" "$@"
