@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/uimr_db
+    username: uimr_admin
+    password: uimr_password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+
+jwt:
+  secret: aW5jaWRlbnRtYW5hZ2VtZW50c2VjcmV0a2V5MjAyNHN1cGVyc2VjdXJlMTIzNDU2Nzg5MA==
+  expirationMs: 86400000
+
+ti:
+  virustotal:
+    apiKey: ${VT_API_KEY:}
+  abuseipdb:
+    apiKey: ${ABUSEIPDB_API_KEY:}

@@ -1,0 +1,55 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.3)
+
+2026-03-26T10:14:40.724-04:00  INFO 38472 --- [uimr-backend] [           main] com.uimr.UimrApplication                 : Starting UimrApplication using Java 21.0.10 with PID 38472 (/home/neo/Proje/backend/target/classes started by neo in /home/neo/Proje/backend)
+2026-03-26T10:14:40.726-04:00 DEBUG 38472 --- [uimr-backend] [           main] com.uimr.UimrApplication                 : Running with Spring Boot v3.2.3, Spring v6.1.4
+2026-03-26T10:14:40.727-04:00  INFO 38472 --- [uimr-backend] [           main] com.uimr.UimrApplication                 : The following 1 profile is active: "prod"
+2026-03-26T10:14:41.039-04:00  INFO 38472 --- [uimr-backend] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-26T10:14:41.078-04:00  INFO 38472 --- [uimr-backend] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 36 ms. Found 10 JPA repository interfaces.
+2026-03-26T10:14:41.372-04:00  INFO 38472 --- [uimr-backend] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-03-26T10:14:41.379-04:00  INFO 38472 --- [uimr-backend] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-03-26T10:14:41.379-04:00  INFO 38472 --- [uimr-backend] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2026-03-26T10:14:41.403-04:00  INFO 38472 --- [uimr-backend] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-03-26T10:14:41.403-04:00  INFO 38472 --- [uimr-backend] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 657 ms
+2026-03-26T10:14:41.428-04:00  INFO 38472 --- [uimr-backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-03-26T10:14:41.585-04:00  INFO 38472 --- [uimr-backend] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@41e9f86
+2026-03-26T10:14:41.586-04:00  INFO 38472 --- [uimr-backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-03-26T10:14:41.591-04:00  INFO 38472 --- [uimr-backend] [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://localhost:5432/uimr_db'
+2026-03-26T10:14:41.621-04:00 DEBUG 38472 --- [uimr-backend] [           main] com.uimr.security.JwtAuthFilter          : Filter 'jwtAuthFilter' configured for use
+2026-03-26T10:14:41.664-04:00  INFO 38472 --- [uimr-backend] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-26T10:14:41.685-04:00  INFO 38472 --- [uimr-backend] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-03-26T10:14:41.698-04:00  INFO 38472 --- [uimr-backend] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-03-26T10:14:41.790-04:00  INFO 38472 --- [uimr-backend] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-26T10:14:41.819-04:00  WARN 38472 --- [uimr-backend] [           main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-03-26T10:14:42.368-04:00  INFO 38472 --- [uimr-backend] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-26T10:14:42.417-04:00  WARN 38472 --- [uimr-backend] [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2026-03-26T10:14:42.417-04:00  WARN 38472 --- [uimr-backend] [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "uk_a510no6sjwqcx153yd5sm4jrr" of relation "teams" does not exist, skipping
+2026-03-26T10:14:42.419-04:00  WARN 38472 --- [uimr-backend] [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2026-03-26T10:14:42.419-04:00  WARN 38472 --- [uimr-backend] [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "uk_6dotkott2kjsp8vw4d0m25fb7" of relation "users" does not exist, skipping
+2026-03-26T10:14:42.421-04:00  WARN 38472 --- [uimr-backend] [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2026-03-26T10:14:42.421-04:00  WARN 38472 --- [uimr-backend] [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "uk_r43af9ap4edm43mmtq01oddj6" of relation "users" does not exist, skipping
+2026-03-26T10:14:42.446-04:00  INFO 38472 --- [uimr-backend] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-26T10:14:42.652-04:00  INFO 38472 --- [uimr-backend] [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-26T10:14:43.201-04:00  WARN 38472 --- [uimr-backend] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-26T10:14:43.348-04:00  INFO 38472 --- [uimr-backend] [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6edbdbed, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1e5bc4e7, org.springframework.security.web.context.SecurityContextHolderFilter@23f37949, org.springframework.security.web.header.HeaderWriterFilter@6337c48d, org.springframework.web.filter.CorsFilter@539c833d, org.springframework.security.web.authentication.logout.LogoutFilter@6304ff53, com.uimr.security.JwtAuthFilter@6a567f7b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@b381194, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2908fc20, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7f096ea0, org.springframework.security.web.session.SessionManagementFilter@4468deb7, org.springframework.security.web.access.ExceptionTranslationFilter@3dacb927, org.springframework.security.web.access.intercept.AuthorizationFilter@7b217a33]
+2026-03-26T10:14:43.506-04:00  INFO 38472 --- [uimr-backend] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2026-03-26T10:14:43.507-04:00  INFO 38472 --- [uimr-backend] [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2026-03-26T10:14:43.507-04:00  INFO 38472 --- [uimr-backend] [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@1fb5eda7]]
+2026-03-26T10:14:43.507-04:00  INFO 38472 --- [uimr-backend] [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2026-03-26T10:14:43.512-04:00  INFO 38472 --- [uimr-backend] [           main] com.uimr.UimrApplication                 : Started UimrApplication in 2.98 seconds (process running for 3.152)
+2026-03-26T10:15:43.509-04:00  INFO 38472 --- [uimr-backend] [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2026-03-26T10:16:36.550-04:00  INFO 38472 --- [uimr-backend] [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-26T10:16:36.550-04:00  INFO 38472 --- [uimr-backend] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-03-26T10:16:36.551-04:00  INFO 38472 --- [uimr-backend] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-03-26T10:21:51.169-04:00  INFO 38472 --- [uimr-backend] [ionShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2026-03-26T10:21:51.170-04:00  INFO 38472 --- [uimr-backend] [ionShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@1fb5eda7]]
+2026-03-26T10:21:51.170-04:00  INFO 38472 --- [uimr-backend] [ionShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2026-03-26T10:21:51.176-04:00  INFO 38472 --- [uimr-backend] [ionShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-26T10:21:51.178-04:00  INFO 38472 --- [uimr-backend] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-03-26T10:21:51.185-04:00  INFO 38472 --- [uimr-backend] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
