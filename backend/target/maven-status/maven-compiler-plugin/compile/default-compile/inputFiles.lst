@@ -35,12 +35,14 @@
 /home/neo/Proje/backend/src/main/java/com/uimr/model/enums/ReportStatus.java
 /home/neo/Proje/backend/src/main/java/com/uimr/dto/response/AuthResponse.java
 /home/neo/Proje/backend/src/main/java/com/uimr/dto/request/KbArticleRequest.java
+/home/neo/Proje/backend/src/main/java/com/uimr/controller/SystemSettingsController.java
 /home/neo/Proje/backend/src/main/java/com/uimr/dto/request/LoginRequest.java
 /home/neo/Proje/backend/src/main/java/com/uimr/service/NoteService.java
 /home/neo/Proje/backend/src/main/java/com/uimr/dto/request/PlaybookRequest.java
 /home/neo/Proje/backend/src/main/java/com/uimr/repository/PlaybookExecutionRepository.java
 /home/neo/Proje/backend/src/main/java/com/uimr/model/Ioc.java
 /home/neo/Proje/backend/src/main/java/com/uimr/model/Playbook.java
+/home/neo/Proje/backend/src/main/java/com/uimr/repository/SystemSettingsRepository.java
 /home/neo/Proje/backend/src/main/java/com/uimr/controller/ThreatIntelController.java
 /home/neo/Proje/backend/src/main/java/com/uimr/controller/IocController.java
 /home/neo/Proje/backend/src/main/java/com/uimr/service/NotificationService.java
@@ -67,6 +69,7 @@
 /home/neo/Proje/backend/src/main/java/com/uimr/dto/response/TimelineEventResponse.java
 /home/neo/Proje/backend/src/main/java/com/uimr/controller/UserController.java
 /home/neo/Proje/backend/src/main/java/com/uimr/service/ReportService.java
+/home/neo/Proje/backend/src/main/java/com/uimr/model/SystemSettings.java
 /home/neo/Proje/backend/src/main/java/com/uimr/controller/IngestionController.java
 /home/neo/Proje/backend/src/main/java/com/uimr/model/enums/IncidentSource.java
 /home/neo/Proje/backend/src/main/java/com/uimr/model/User.java
@@ -81,3 +84,4 @@
 /home/neo/Proje/backend/src/main/java/com/uimr/model/enums/IncidentStatus.java
 /home/neo/Proje/backend/src/main/java/com/uimr/security/JwtTokenProvider.java
 /home/neo/Proje/backend/src/main/java/com/uimr/model/KbArticle.java
+/home/neo/Proje/backend/src/main/java/com/uimr/service/SystemSettingsService.java

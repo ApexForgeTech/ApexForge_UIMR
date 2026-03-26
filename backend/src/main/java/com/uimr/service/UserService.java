@@ -17,6 +17,10 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public User createUser(User user) {
+        return userRepository.save(user);
+    }
+
     public User updateRole(Long id, com.uimr.model.enums.UserRole role) {
         User user = userRepository.findById(id).orElseThrow();
         user.setRole(role);
@@ -27,5 +31,9 @@ public class UserService {
         User user = userRepository.findById(id).orElseThrow();
         user.setActive(!user.getActive());
         return userRepository.save(user);
+    }
+
+    public void deleteUser(Long id) {
+        userRepository.deleteById(id);
     }
 }
