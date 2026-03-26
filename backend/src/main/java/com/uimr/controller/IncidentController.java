@@ -22,14 +22,14 @@ public class IncidentController {
 
     @GetMapping
     public ResponseEntity<Page<IncidentResponse>> getIncidents(
-            @RequestParam(required = false) IncidentStatus status,
-            @RequestParam(required = false) Severity severity,
-            @RequestParam(required = false) Long assigneeId,
-            @RequestParam(required = false) String search,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "20") int size,
-            @RequestParam(defaultValue = "createdAt") String sortBy,
-            @RequestParam(defaultValue = "desc") String sortDir) {
+            @RequestParam(value = "status", required = false) IncidentStatus status,
+            @RequestParam(value = "severity", required = false) Severity severity,
+            @RequestParam(value = "assigneeId", required = false) Long assigneeId,
+            @RequestParam(value = "search", required = false) String search,
+            @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "size", defaultValue = "20") int size,
+            @RequestParam(value = "sortBy", defaultValue = "createdAt") String sortBy,
+            @RequestParam(value = "sortDir", defaultValue = "desc") String sortDir) {
 
         Sort sort = sortDir.equalsIgnoreCase("asc") ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
         PageRequest pageable = PageRequest.of(page, size, sort);
@@ -37,7 +37,7 @@ public class IncidentController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<IncidentResponse> getIncident(@PathVariable Long id) {
+    public ResponseEntity<IncidentResponse> getIncident(@PathVariable("id") Long id) {
         return ResponseEntity.ok(incidentService.getIncident(id));
     }
 
@@ -50,7 +50,7 @@ public class IncidentController {
 
     @PutMapping("/{id}")
     public ResponseEntity<IncidentResponse> updateIncident(
-            @PathVariable Long id,
+            @PathVariable("id") Long id,
             @RequestBody UpdateIncidentRequest request,
             Authentication auth) {
         return ResponseEntity.ok(incidentService.updateIncident(id, request, auth.getName()));
@@ -58,7 +58,7 @@ public class IncidentController {
 
     @PatchMapping("/{id}/close")
     public ResponseEntity<IncidentResponse> closeIncident(
-            @PathVariable Long id,
+            @PathVariable("id") Long id,
             @Valid @RequestBody CloseIncidentRequest request,
             Authentication auth) {
         return ResponseEntity.ok(incidentService.closeIncident(id, request, auth.getName()));
@@ -66,7 +66,7 @@ public class IncidentController {
 
     @PatchMapping("/{id}/assign")
     public ResponseEntity<IncidentResponse> assignIncident(
-            @PathVariable Long id,
+            @PathVariable("id") Long id,
             @RequestBody UpdateIncidentRequest request,
             Authentication auth) {
         return ResponseEntity.ok(incidentService.updateIncident(id, request, auth.getName()));

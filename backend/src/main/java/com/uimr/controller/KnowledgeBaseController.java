@@ -23,15 +23,15 @@ public class KnowledgeBaseController {
 
     @GetMapping
     public ResponseEntity<Page<KbArticle>> getArticles(
-            @RequestParam(required = false) String category,
-            @RequestParam(required = false) String search,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "20") int size) {
+            @RequestParam(value = "category", required = false) String category,
+            @RequestParam(value = "search", required = false) String search,
+            @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "size", defaultValue = "20") int size) {
         return ResponseEntity.ok(kbService.getArticles(category, search, PageRequest.of(page, size)));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<KbArticle> getArticle(@PathVariable Long id) {
+    public ResponseEntity<KbArticle> getArticle(@PathVariable("id") Long id) {
         return ResponseEntity.ok(kbService.getArticle(id));
     }
 
@@ -44,13 +44,13 @@ public class KnowledgeBaseController {
 
     @PutMapping("/{id}")
     public ResponseEntity<KbArticle> updateArticle(
-            @PathVariable Long id,
+            @PathVariable("id") Long id,
             @Valid @RequestBody KbArticleRequest request) {
         return ResponseEntity.ok(kbService.updateArticle(id, request));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteArticle(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteArticle(@PathVariable("id") Long id) {
         kbService.deleteArticle(id);
         return ResponseEntity.noContent().build();
     }

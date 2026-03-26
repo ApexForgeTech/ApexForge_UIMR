@@ -2,7 +2,7 @@ package com.uimr.config;
 
 import com.uimr.dto.request.RegisterRequest;
 import com.uimr.model.User;
-import com.uimr.model.enums.Role;
+import com.uimr.model.enums.UserRole;
 import com.uimr.repository.UserRepository;
 import com.uimr.service.AuthService;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +31,7 @@ public class DataInitializer {
                 
                 // Set role to ADMIN since register defaults to USER
                 User savedAdmin = userRepository.findByUsername("admin").orElseThrow();
-                savedAdmin.setRole(Role.ADMIN);
+                savedAdmin.setRole(UserRole.ADMIN);
                 userRepository.save(savedAdmin);
                 
                 System.out.println("Default admin user created: admin / admin123");

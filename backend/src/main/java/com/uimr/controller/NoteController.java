@@ -21,7 +21,7 @@ public class NoteController {
     private final NoteService noteService;
 
     @GetMapping
-    public ResponseEntity<List<Map<String, Object>>> getNotes(@PathVariable Long incidentId) {
+    public ResponseEntity<List<Map<String, Object>>> getNotes(@PathVariable("incidentId") Long incidentId) {
         List<Map<String, Object>> notes = noteService.getNotes(incidentId).stream()
                 .map(n -> Map.<String, Object>of(
                         "id", n.getId(),
@@ -37,7 +37,7 @@ public class NoteController {
 
     @PostMapping
     public ResponseEntity<Map<String, Object>> addNote(
-            @PathVariable Long incidentId,
+            @PathVariable("incidentId") Long incidentId,
             @Valid @RequestBody NoteRequest request,
             Authentication auth) {
         AnalystNote note = noteService.addNote(incidentId, request, auth.getName());
@@ -50,7 +50,7 @@ public class NoteController {
     }
 
     @DeleteMapping("/{noteId}")
-    public ResponseEntity<Void> deleteNote(@PathVariable Long incidentId, @PathVariable Long noteId) {
+    public ResponseEntity<Void> deleteNote(@PathVariable("incidentId") Long incidentId, @PathVariable("noteId") Long noteId) {
         noteService.deleteNote(noteId);
         return ResponseEntity.noContent().build();
     }

@@ -19,20 +19,20 @@ public class IocController {
     private final IocService iocService;
 
     @GetMapping("/incidents/{incidentId}/iocs")
-    public ResponseEntity<List<IocResponse>> getIocs(@PathVariable Long incidentId) {
+    public ResponseEntity<List<IocResponse>> getIocs(@PathVariable("incidentId") Long incidentId) {
         return ResponseEntity.ok(iocService.getIocsByIncident(incidentId));
     }
 
     @PostMapping("/incidents/{incidentId}/iocs")
     public ResponseEntity<IocResponse> addIoc(
-            @PathVariable Long incidentId,
+            @PathVariable("incidentId") Long incidentId,
             @Valid @RequestBody IocRequest request,
             Authentication auth) {
         return ResponseEntity.ok(iocService.addIoc(incidentId, request, auth.getName()));
     }
 
     @DeleteMapping("/iocs/{iocId}")
-    public ResponseEntity<Void> deleteIoc(@PathVariable Long iocId, Authentication auth) {
+    public ResponseEntity<Void> deleteIoc(@PathVariable("iocId") Long iocId, Authentication auth) {
         iocService.deleteIoc(iocId, auth.getName());
         return ResponseEntity.noContent().build();
     }

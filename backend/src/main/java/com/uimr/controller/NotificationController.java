@@ -23,8 +23,8 @@ public class NotificationController {
 
     @GetMapping
     public ResponseEntity<Page<Notification>> getNotifications(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "20") int size,
+            @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "size", defaultValue = "20") int size,
             Authentication auth) {
         User user = userRepository.findByUsername(auth.getName()).orElseThrow();
         return ResponseEntity.ok(notificationService.getUserNotifications(user.getId(), PageRequest.of(page, size)));
@@ -37,7 +37,7 @@ public class NotificationController {
     }
 
     @PatchMapping("/{id}/read")
-    public ResponseEntity<Void> markAsRead(@PathVariable Long id) {
+    public ResponseEntity<Void> markAsRead(@PathVariable("id") Long id) {
         notificationService.markAsRead(id);
         return ResponseEntity.ok().build();
     }

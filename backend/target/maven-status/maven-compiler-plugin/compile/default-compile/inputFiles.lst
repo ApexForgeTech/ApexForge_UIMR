@@ -70,6 +70,7 @@
 /home/neo/Proje/backend/src/main/java/com/uimr/exception/GlobalExceptionHandler.java
 /home/neo/Proje/backend/src/main/java/com/uimr/controller/AuthController.java
 /home/neo/Proje/backend/src/main/java/com/uimr/security/JwtAuthFilter.java
+/home/neo/Proje/backend/src/main/java/com/uimr/config/DataInitializer.java
 /home/neo/Proje/backend/src/main/java/com/uimr/model/AnalystNote.java
 /home/neo/Proje/backend/src/main/java/com/uimr/model/enums/IncidentStatus.java
 /home/neo/Proje/backend/src/main/java/com/uimr/security/JwtTokenProvider.java

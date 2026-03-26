@@ -50,8 +50,8 @@ public class PlaybookController {
 
     @PostMapping("/{playbookId}/execute")
     public ResponseEntity<Map<String, Object>> execute(
-            @PathVariable Long playbookId,
-            @RequestParam Long incidentId,
+            @PathVariable("playbookId") Long playbookId,
+            @RequestParam("incidentId") Long incidentId,
             Authentication auth) {
         PlaybookExecution exec = playbookService.executePlaybook(playbookId, incidentId, auth.getName());
         return ResponseEntity.ok(Map.of(
@@ -64,7 +64,7 @@ public class PlaybookController {
     }
 
     @GetMapping("/executions/{incidentId}")
-    public ResponseEntity<List<Map<String, Object>>> getExecutions(@PathVariable Long incidentId) {
+    public ResponseEntity<List<Map<String, Object>>> getExecutions(@PathVariable("incidentId") Long incidentId) {
         List<Map<String, Object>> result = playbookService.getExecutions(incidentId).stream()
                 .map(e -> Map.<String, Object>of(
                         "id", e.getId(),

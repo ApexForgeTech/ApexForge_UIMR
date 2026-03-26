@@ -16,7 +16,7 @@ public class TimelineController {
     private final TimelineService timelineService;
 
     @GetMapping
-    public ResponseEntity<List<TimelineEventResponse>> getTimeline(@PathVariable Long incidentId) {
+    public ResponseEntity<List<TimelineEventResponse>> getTimeline(@PathVariable("incidentId") Long incidentId) {
         return ResponseEntity.ok(timelineService.getTimeline(incidentId));
     }
 }

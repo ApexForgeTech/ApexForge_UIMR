@@ -15,7 +15,7 @@ public class ThreatIntelController {
     private final ThreatIntelService tiService;
 
     @PostMapping("/iocs/{iocId}/check-ti")
-    public ResponseEntity<IocResponse> checkTi(@PathVariable Long iocId, Authentication auth) {
+    public ResponseEntity<IocResponse> checkTi(@PathVariable("iocId") Long iocId, Authentication auth) {
         return ResponseEntity.ok(tiService.checkIoc(iocId, auth.getName()));
     }
 }
